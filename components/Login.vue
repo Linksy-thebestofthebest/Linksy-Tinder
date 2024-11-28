@@ -1,5 +1,5 @@
 <template>
-    <section class="flex bg-[#131619] min-h-screen">
+    <section class="flex bg-[#131619] min-h-screen font-jakarta">
         <div class="w-1/2 flex flex-col">
             <div class="flex items-start m-6">
                 <img src="../public/img/logo.svg" alt="Logo Linksy">
@@ -43,6 +43,9 @@
     </section>
 </template>
 <style setup>
-@import url('https://fonts.googleapis.com/css2?family=Jakarta:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
+.font-jakarta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 </style>
