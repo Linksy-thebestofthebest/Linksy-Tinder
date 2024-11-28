@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Conversa />
-    <!-- <NuxtPage/> -->
+    <NuxtPage/>
   </div>
 </template>
