@@ -2,7 +2,7 @@
     <div class="flex h-screen">
         <Aside />
 
-        <div class="flex flex-col flex-grow bg-[#0D0F10] text-white rounded-lg overflow-hidden">
+        <section class="flex flex-col flex-grow bg-[#0D0F10] text-white rounded-lg overflow-hidden font-jakarta">
 
             <div class="flex items-center justify-between p-4 bg-[#0D0F10]">
                 <h2 class="text-lg font-bold">André</h2>
@@ -87,21 +87,15 @@
                 </button>
             </div>
 
-        </div>
+        </section>
 
-        <div class="w-1/4 bg-[#0D0F10] p-4 flex flex-col items-center text-white">
-            <img src="../public/img/eu-2.jfif" alt="Avatar" class="" />
-            <h2 class="text-lg font-bold">André</h2>
-            <p class="text-sm text-gray-400">São Paulo, SP</p>
-            <div class="mt-4 space-y-2 text-sm">
-                <p><strong>Instituição:</strong> FIAP</p>
-                <p><strong>Curso:</strong> Análise e Desenvolvimento de Sistemas</p>
-                <p><strong>Certificações:</strong> Front-end FIAP, Banco de Dados FIAP, JavaScript Alura, React
-                    (formação completa Alura)</p>
-                <p><strong>Conhecimento:</strong> Front e Back, React, MongoDB, Vue, Nuxt, JavaScript, Python, Java,
-                    SQL, MySQL, Next, HTML, CSS, Tailwind</p>
-            </div>
-        </div>
-
+        <Informacao />
     </div>
 </template>
+<style setup>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+.font-jakarta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+</style>
