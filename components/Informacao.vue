@@ -1,5 +1,5 @@
 <template>
-    <section class="w-4/12 bg-[#0D0F10] p-6 flex flex-col items-center text-white font-jakarta">
+    <section class="w-4/12 p-6 flex flex-col items-center text-white font-jakarta">
         <div class="flex flex-col items-center overflow-y-auto">
             <div class="flex justify-center">
                 <img src="../public/img/eu-2.jfif" alt="Avatar" class="rounded-2xl w-8/12" />
