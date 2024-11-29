@@ -33,7 +33,7 @@
                     <a href="#" class="bg-[#B6F09C] font-semibold text-[#0C1132] flex w-9/12 items-center justify-center my-8 text-lg py-2 rounded-xl">Login</a>
                 </div>
                 <div class="flex items-center justify-center w-9/12">
-                    <p class="text-[#686B6E] font-semibold text-lg">Não possui uma conta?<a href="/cadastro" class="bg-clip-text bg-gradient-to-tr from-[#82DBF7] from-0% to-[#B6F09C] to-100% text-transparent"> Cadastre-se</a></p>
+                    <p class="text-[#686B6E] font-semibold text-lg">Não possui uma conta?<a href="cadastro" class="bg-clip-text bg-gradient-to-tr from-[#82DBF7] from-0% to-[#B6F09C] to-100% text-transparent"> Cadastre-se</a></p>
                 </div>
             </div>
         </div>
