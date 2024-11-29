@@ -1,3 +1,3 @@
 <template>
-    <section/>
+    <Cadastro/>
 </template>
