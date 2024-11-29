@@ -6,7 +6,7 @@
                     <img src="../public/img/avatar-pessoal.svg" alt="">
                     <p class="text-white font-semibold text-lg">Manook</p>
                 </div>
-                <a href="#"><img src="../public/img/configuracao.svg" alt="Configuração"></a>
+                <a href="/perfil"><img src="../public/img/configuracao.svg" alt="Configuração"></a>
             </div>
             <div class="bg-[#0D0F10] mb-0.5 p-6">
                 <h4 class="text-[#686B6E] text-sm mb-4">Geral</h4>
