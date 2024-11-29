@@ -11,7 +11,7 @@
             <div class="bg-[#0D0F10] mb-0.5 p-6">
                 <h4 class="text-[#686B6E] text-sm mb-4">Geral</h4>
                 <ul class="flex flex-col gap-5">
-                    <a class="flex gap-4 w-1/3" href="#">
+                    <a class="flex gap-4 w-1/3" href="/buscar">
                         <img src="../public/img/buscar.svg" alt="Lupa">
                         <li class="text-[#E8E9E9] text-base">Buscar</li>
                     </a>
