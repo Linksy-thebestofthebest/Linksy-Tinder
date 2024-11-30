@@ -10,33 +10,42 @@
                 <p class="text-[#C9C9C9] text-sm mb-3">É assim que os outros verão você no site.</p>
             </div>
             <div class="flex flex-col my-4">
+                <label class="w-48 h-48 bg-gray-300 flex items-center justify-center text-gray-500 rounded-full cursor-pointer transition-all duration-300 outline-none overflow-hidden hover:bg-gray-400 hover:text-gray-600 active:bg-gray-200 active:text-teal-950" for="foto" tabindex="0">
+                    <span class="w-full h-full flex items-center justify-center">
+                        <span v-if="!imagePreview" class="text-center">{{ placeholder }}</span>
+                        <img v-else :src="imagePreview" class="w-full h-full object-cover" />
+                    </span>
+                </label>
+                <input type="file" name="foto" id="foto" class="hidden" @change="handleFileChange" ref="fileInput"/>
+            </div>
+            <div class="flex flex-col my-4">
                 <label for="nome" class="text-white text-base font-semibold mb-2">Nome de usuário</label>
-                <input type="text" name="nome" id="nome" placeholder="Lucas Silva" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
+                <input type="text" v-model="nome" name="nome" id="nome" placeholder="Lucas Silva" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
             </div>
             <div class="flex flex-col my-4">
                 <label for="data" class="text-white text-base font-semibold mb-2">Data de aniversário</label>
-                <input type="date" name="data" id="data" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
+                <input type="date" v-model="dataAniversario" name="data" id="data" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
             </div>
             <div class="flex flex-col my-4">
                 <p class="text-white text-base font-semibold">Localização</p>
                 <label for="local" class="text-xs mt-2 mb-4 text-[#C9C9C9]">Coloque a cidade onde você mora</label>
-                <input type="text" name="local" id="local" placeholder="São Paulo" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
+                <input type="text" v-model="localizacao" name="local" id="local" placeholder="São Paulo" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]">
             </div>
             <div class="flex flex-col my-4">
                 <p class="text-white text-base font-semibold">Biografia</p>
                 <label for="bio" class="text-xs mt-2 mb-4 text-[#C9C9C9]">Faça uma breve descrição sobre você, quais cursos já fez, o que sabe, quais são suas experiências</label>
-                <textarea name="bio" id="bio" cols="40" rows="5" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]"></textarea>
+                <textarea name="bio" v-model="bio" id="bio" cols="40" rows="5" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]"></textarea>
             </div>
             <div class="flex flex-col my-4">
                 <p class="text-white text-base font-semibold">URLs</p>
                 <label for="link" class="text-xs mt-2 mb-4 text-[#C9C9C9]">Adicione links como github, linkedin</label>
-                <input type="url" name="link" id="link" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]"></input>
+                <input type="url" v-model="url" name="link" id="link" class="border-[#D9D9D9] border bg-transparent p-2 rounded-md text-[#C9C9C9]"></input>
                 <div class="mt-3">
                     <button class="text-white bg-transparent border border-[#D9D9D9] p-2 rounded-md hover:bg-[#cccccc1f] duration-100	transition-all">Adicionar URL</button>
                 </div>
             </div>
             <div class="mb-5 mt-8">
-                <button class="text-black bg-[#D9D9D9] p-4 font-semibold rounded-lg hover:bg-[#919191] duration-200 transition-all">Atualizar Perfil</button>
+                <button @click="atualizarPerfil" class="text-black bg-[#D9D9D9] p-4 font-semibold rounded-lg hover:bg-[#919191] duration-200 transition-all">Atualizar Perfil</button>
             </div>
         </div>
     </section>
@@ -47,4 +56,56 @@
 .font-jakarta {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
 </style>
+
+<script setup>
+import { ref } from 'vue';
+
+
+const nome = ref("");
+const dataAniversario = ref("");
+const localizacao = ref("");
+const bio = ref("");
+const url = ref("");
+const foto = ref(null);
+const placeholder = "Selecione uma imagem";
+const imagePreview = ref(null);
+
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.value = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    imagePreview.value = null;
+  }
+};
+
+const handleFile = (event) => {
+  foto.value = event.target.files[0];
+};
+
+const criarPerfil = async () => {
+  const formData = new FormData();
+  formData.append("nome", nome.value);
+  formData.append("dataAniversario", dataAniversario.value);
+  formData.append("localizacao", localizacao.value);
+  formData.append("bio", bio.value);
+  formData.append("url", url.value);
+  if (foto.value) formData.append("foto", foto.value);
+
+  try {
+    const response = await $fetch("/api/users/create", {
+      method: "POST",
+      body: formData,
+    });
+    console.log("Perfil criado:", response);
+  } catch (error) {
+    console.error("Erro ao criar perfil:", error);
+  }
+};
+</script>
