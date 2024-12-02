@@ -63,10 +63,14 @@
             </section>
 
             <footer class="text-center mt-12">
-                <p class="text-lg text-[#B6F09C] font-semibold">
+                <button class="bg-[#B6F09C] text-[#0C1132] font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition">
+                    <a href="/">Voltar à Página Inicial</a>
+                </button>
+                <p class="text-lg text-[#B6F09C] font-semibold mt-4">
                     "Linksy: Conectando talentos, criando oportunidades."
                 </p>
             </footer>
+
 
         </div>
     </section>
