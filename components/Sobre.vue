@@ -41,6 +41,28 @@
                 </div>
             </section>
 
+            <section class="mb-16">
+                <h2 class="text-3xl font-semibold mb-4">O que nos torna únicos?</h2>
+                <ul class="text-[#9B9C9E] list-disc pl-6 leading-8">
+                    <li>
+                        <strong>Interface Gamificada:</strong> Design moderno e interativo, inspirado em aplicativos
+                        como Tinder.
+                    </li>
+                    <li>
+                        <strong>Compatibilidade Cultural:</strong> Avaliação de valores e cultura, além de habilidades
+                        técnicas.
+                    </li>
+                    <li>
+                        <strong>Inteligência Artificial:</strong> Recomendações personalizadas e busca preditiva.
+                    </li>
+                    <li>
+                        <strong>Networking Colaborativo:</strong> Participe de comunidades e expanda sua rede
+                        profissional.
+                    </li>
+                </ul>
+            </section>
+
+
 
         </div>
     </section>
