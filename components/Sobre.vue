@@ -2,7 +2,10 @@
     <section class="min-h-screen bg-[#131619] text-white font-jakarta px-8 py-16">
         <div class="max-w-6xl mx-auto">
             <header class="text-center mb-12">
-                <h1 class="text-4xl font-bold mb-4">Sobre a Linksy</h1>
+                <div class="flex justify-center items-center mb-4">
+                    <h1 class="text-4xl font-bold mr-4">Sobre a Linksy</h1>
+                    <img src="../public/img/logo.svg" alt="Logo Linksy">
+                </div>
                 <p class="text-lg text-[#9B9C9E]">
                     Conectando talentos, criando oportunidades.
                 </p>
@@ -63,7 +66,8 @@
             </section>
 
             <footer class="text-center mt-12">
-                <button class="bg-[#B6F09C] text-[#0C1132] font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition">
+                <button
+                    class="bg-[#B6F09C] text-[#0C1132] font-semibold py-2 px-6 rounded-lg shadow-md hover:opacity-90 transition">
                     <a href="/">Voltar à Página Inicial</a>
                 </button>
                 <p class="text-lg text-[#B6F09C] font-semibold mt-4">
