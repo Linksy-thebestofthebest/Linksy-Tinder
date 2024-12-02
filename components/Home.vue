@@ -1,7 +1,11 @@
 <template>
     <div class="min-h-screen bg-[#131619] flex flex-col items-center justify-center font-jakarta">
         <header class="w-full px-6 py-4 flex justify-between items-center">
-            <h1 class="text-white text-3xl font-bold">Linksy</h1>
+            <div class="flex items-center gap-3 m-6">
+                <img src="../public/img/logo.svg" alt="Logo Linksy">
+                <h1 class="text-white text-3xl font-bold">Linksy</h1>
+            </div>
+            
             <nav>
                 <ul class="flex gap-6">
                     <li><a href="/sobre" class="text-[#9B9C9E] hover:text-white transition duration-200">Sobre</a></li>
