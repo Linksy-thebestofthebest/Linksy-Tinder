@@ -62,7 +62,11 @@
                 </ul>
             </section>
 
-
+            <footer class="text-center mt-12">
+                <p class="text-lg text-[#B6F09C] font-semibold">
+                    "Linksy: Conectando talentos, criando oportunidades."
+                </p>
+            </footer>
 
         </div>
     </section>
