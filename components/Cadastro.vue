@@ -81,7 +81,7 @@
                 </div>
             </form>
             <div class="flex items-center justify-center w-1/1">
-                <p class="text-[#686B6E] font-semibold text-lg ml-[7rem]">Já possui uma conta?<a href="/" class="ml-4 bg-clip-text bg-gradient-to-tr from-[#82DBF7] from-0% to-[#B6F09C] to-100% text-transparent"> Faça Login</a></p>
+                <p class="text-[#686B6E] font-semibold text-lg ml-[7rem]">Já possui uma conta?<a href="/login" class="ml-4 bg-clip-text bg-gradient-to-tr from-[#82DBF7] from-0% to-[#B6F09C] to-100% text-transparent"> Faça Login</a></p>
             </div>
         </div> 
         <div class="final min-h-screen">
