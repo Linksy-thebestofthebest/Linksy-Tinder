@@ -16,6 +16,32 @@
                     sistema moderno e dinâmico, inspirado pela simplicidade e interatividade de aplicativos de "match".
                 </p>
             </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-semibold mb-4">Funcionalidades que Transformam</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-[#1A1D21] p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Para Profissionais</h3>
+                        <ul class="text-[#9B9C9E] list-disc pl-6 leading-7">
+                            <li>Crie um perfil profissional completo.</li>
+                            <li>Receba recomendações personalizadas de vagas.</li>
+                            <li>Use nosso sistema de "match" para se conectar com empresas.</li>
+                            <li>Receba feedback valioso sobre seu desempenho.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#1A1D21] p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">Para Empresas</h3>
+                        <ul class="text-[#9B9C9E] list-disc pl-6 leading-7">
+                            <li>Publique vagas e projetos com facilidade.</li>
+                            <li>Encontre talentos compatíveis rapidamente.</li>
+                            <li>Analise a compatibilidade de candidatos com IA avançada.</li>
+                            <li>Gerencie processos seletivos de forma eficiente.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
         </div>
     </section>
 </template>
