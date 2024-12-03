@@ -70,7 +70,7 @@ const login = async () => {
             alert('Erro ao fazer login: ' + (response.message || 'Erro desconhecido'));
         } else {
             localStorage.setItem('token', response.token);
-            await navigateTo('/buscar');
+            await navigateTo('/perfil');
         }
     } catch (error) {
         console.error('Erro ao tentar logar:', error);
