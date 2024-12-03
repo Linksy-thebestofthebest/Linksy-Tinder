@@ -9,7 +9,7 @@
             <nav class="w-full sm:w-auto">
                 <ul class="flex flex-wrap justify-center sm:justify-end gap-6">
                     <li><a href="/sobre" class="text-[#9B9C9E] hover:text-white transition duration-200">Sobre</a></li>
-                    <li><a href="#" class="text-[#9B9C9E] hover:text-white transition duration-200">Ajuda</a></li>
+                    <li><a href="/ajuda" class="text-[#9B9C9E] hover:text-white transition duration-200">Ajuda</a></li>
                     <li><a href="/login" class="text-[#B6F09C] hover:underline">Login</a></li>
                 </ul>
             </nav>
