@@ -11,42 +11,55 @@ export default defineEventHandler(async (event) => {
       event,
       createError({
         status: 406,
-        statusMessage: "Campos obrigatórios não preenchidos"
+        statusMessage: "Email e senha são obrigatórios"
       })
     );
   }
 
-  // Verificando se o usuário existe
-  const user = await User.findOne({ email });
-  
-  if (!user) {
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return sendError(
+        event,
+        createError({
+          status: 400,
+          statusMessage: "Credenciais inválidas"
+        })
+      );
+    }
+
+    const isMatch = await bcrypt.compare(senha, user.senha);
+
+    if (!isMatch) {
+      return sendError(
+        event,
+        createError({
+          status: 400,
+          statusMessage: "Credenciais inválidas"
+        })
+      );
+    }
+
+    // Criando um token JWT
+    const token = jwt.sign(
+      { id: user._id, nome: user.nome },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    return {
+      message: 'Login bem-sucedido',
+      token
+    };
+  } catch (error) {
+    console.error("Erro ao realizar login:", error);
     return sendError(
       event,
       createError({
-        status: 400,
-        statusMessage: "Usuário não encontrado"
+        status: 500,
+        statusMessage: "Erro interno no servidor"
       })
     );
   }
-
-  // Verificando se a senha está correta
-  const isMatch = await bcrypt.compare(senha, user.senha);
-
-  if (!isMatch) {
-    return sendError(
-      event,
-      createError({
-        status: 400,
-        statusMessage: "Email ou senha incorretos"
-      })
-    );
-  }
-
-  // Criando um token JWT
-  const token = jwt.sign({ id: user._id, nome: user.nome }, 'JWT_SECRET', { expiresIn: '1h' });
-
-  return { 
-    message: 'Login bem-sucedido', 
-    token 
-  };
 });
