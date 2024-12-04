@@ -7,13 +7,18 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "nuxt start",
+    "socket": "node server/socketServer.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
     "nuxt": "^3.14.1592",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "vue": "latest",
     "vue-router": "latest"
   },

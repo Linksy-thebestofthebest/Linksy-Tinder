@@ -1,85 +1,114 @@
 <template>
     <section class="flex flex-col flex-grow text-white rounded-lg overflow-hidden font-jakarta">
-        <div class="flex items-center justify-between p-4">
-            <h2 class="text-lg font-bold">André</h2>
+        <!-- Cabeçalho do Chat -->
+        <div class="flex items-center justify-between p-4 bg-gray-800">
+            <h2 class="text-lg font-bold">{{ chatUser }}</h2>
             <span class="text-sm text-green-400">Online</span>
         </div>
-
-        <div class="flex flex-col overflow-y-auto p-4 space-y-4 w-full" id="chat-container">
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Olá, gostei do seu perfil, gostaria de fazer umas perguntas.</p>
-                <span class="block mt-1 text-xs text-gray-300">13sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-end bg-gray-400 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Oi, estou bem sim e você? Eu super toparia conversar mais sobre o estágio.</p>
-                <span class="block mt-1 text-xs text-gray-300">11sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Podemos marcar uma reunião no zoom?</p>
-                <span class="block mt-1 text-xs text-gray-300">4sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-end bg-gray-400 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Claro, qual horário e dia seria?</p>
-                <span class="block mt-1 text-xs text-gray-300">agora</span>
-            </div>
-
-
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Que tal amanhã às 14h? Podemos conversar sobre os detalhes.</p>
-                <span class="block mt-1 text-xs text-gray-300">2sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-end bg-gray-400 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Amanhã às 14h está perfeito! Vou aguardar o link da reunião.</p>
-                <span class="block mt-1 text-xs text-gray-300">1sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Perfeito! Vou enviar o link ainda hoje. Até lá!</p>
-                <span class="block mt-1 text-xs text-gray-300">agora</span>
-            </div>
-
-
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Ah, por favor, confirme seu e-mail para que eu envie os documentos também.</p>
-                <span class="block mt-1 text-xs text-gray-300">5sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-end bg-gray-400 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Sim, claro. Meu e-mail é andre@exemplo.com.</p>
-                <span class="block mt-1 text-xs text-gray-300">2sec atrás</span>
-            </div>
-
-
-            <div class="flex flex-col self-start bg-gray-700 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Ótimo, já vou organizar tudo por aqui. Obrigado!</p>
-                <span class="block mt-1 text-xs text-gray-300">agora</span>
-            </div>
-
-
-            <div class="flex flex-col self-end bg-gray-400 text-white max-w-[70%] p-3 rounded-lg">
-                <p class="text-sm">Sem problemas! Estarei no aguardo.</p>
-                <span class="block mt-1 text-xs text-gray-300">2sec atrás</span>
+    
+        <!-- Container de Mensagens -->
+        <div class="flex flex-col overflow-y-auto p-4 space-y-4 w-full bg-gray-900" id="chat-container">
+            <div
+            v-for="(msg, index) in messages"
+            :key="index"
+            :class="[
+                'flex flex-col p-3 rounded-lg max-w-[70%]',
+                msg.from === currentUser ? 'self-end bg-blue-500' : 'self-start bg-gray-700'
+            ]"
+            >
+            <p class="text-sm">{{ msg.content }}</p>
+            <span class="block mt-1 text-xs text-gray-300">{{ formatTimestamp(msg.timestamp) }}</span>
             </div>
         </div>
-
-
-
-            <div class="flex items-center p-4">
-                <input type="text" placeholder="Escreva uma mensagem..." class="flex-1 px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-400" />
-                <button class="ml-3 px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-600 transition">
-                    <i class="text-white">➤</i>
-                </button>
-            </div>
-
+    
+        <!-- Input de Mensagem -->
+        <div class="flex items-center p-4 bg-gray-800">
+            <input
+            v-model="newMessage"
+            type="text"
+            placeholder="Escreva uma mensagem..."
+            class="flex-1 px-4 py-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
+            @keyup.enter="sendMessage"
+            />
+            <button
+            @click="sendMessage"
+            class="ml-3 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-400 transition"
+            >
+            <i class="text-white">➤</i>
+            </button>
+        </div>
         </section>
-</template>
+    </template>
+    
+    <script>
+    import { io } from "socket.io-client";
+    
+    export default {
+        data() {
+        return {
+            socket: null, // Instância do WebSocket
+            messages: [], // Lista de mensagens
+            newMessage: "", // Nova mensagem a ser enviada
+            currentUser: "andre", // Usuário atual
+            chatUser: "empresa", // Usuário do chat (destinatário)
+        };
+        },
+        mounted() {
+        // Conecta ao servidor WebSocket
+        this.socket = io("http://localhost:3000");
+    
+        // Carrega mensagens do banco (simulado aqui)
+        this.loadMessages();
+    
+        // Escuta mensagens recebidas
+        this.socket.on("receiveMessage", (message) => {
+            this.messages.push(message);
+            this.scrollToBottom();
+        });
+        },
+        methods: {
+        loadMessages() {
+            // Simulação de carregamento de mensagens (use API real no futuro)
+            this.messages = [
+            { from: "andre", to: "empresa", content: "Olá, gostei do seu perfil!", timestamp: new Date() },
+            { from: "empresa", to: "andre", content: "Oi! Tudo bem?", timestamp: new Date() },
+            ];
+            this.scrollToBottom();
+        },
+        sendMessage() {
+            if (!this.newMessage.trim()) return;
+    
+            const message = {
+            from: this.currentUser,
+            to: this.chatUser,
+            content: this.newMessage,
+            timestamp: new Date(),
+            };
+    
+            // Envia a mensagem para o servidor WebSocket
+            this.socket.emit("sendMessage", message);
+    
+            // Adiciona a mensagem localmente
+            this.messages.push(message);
+            this.newMessage = "";
+            this.scrollToBottom();
+        },
+        scrollToBottom() {
+            const container = document.getElementById("chat-container");
+            if (container) container.scrollTop = container.scrollHeight;
+        },
+        formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return `${date.getHours()}:${date.getMinutes()}`;
+        },
+        },
+    };
+    </script>
+    
+    <style setup>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    
+    .font-jakarta {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+</style>
