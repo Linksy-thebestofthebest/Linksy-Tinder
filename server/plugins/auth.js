@@ -1,23 +1,24 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
-export default defineEventHandler((event) => {
-  const authHeader = event.req.headers.authorization;
+export default defineEventHandler(async (event) => {
+  const authHeader = event.node.req.headers.authorization; // Certifique-se de usar 'event.node.req'
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw createError({
       statusCode: 401,
-      message: 'Token de autenticação não fornecido.',
+      message: "Token de autenticação não fornecido.",
     });
   }
 
-  const token = authHeader.split(' ')[1];
+  const token = authHeader.split(" ")[1];
+
   try {
-    const decoded = jwt.verify(token, 'JWT_SECRET');
-    event.context.user = decoded; // Adiciona o usuário ao contexto
+    const decoded = jwt.verify(token, "JWT_SECRET"); // Substitua por sua chave secreta
+    event.context.user = decoded; // Adicione o usuário ao contexto
   } catch (error) {
     throw createError({
       statusCode: 403,
-      message: 'Token inválido ou expirado.',
+      message: "Token inválido ou expirado.",
     });
   }
 });
