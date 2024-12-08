@@ -43,9 +43,9 @@ export default defineEventHandler(async (event) => {
 
     // Criando um token JWT
     const token = jwt.sign(
-      { id: user._id, nome: user.nome },
+      { id: user._id },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { algorithm: "HS256", expiresIn: '1h' }
     );
 
     return {

@@ -152,71 +152,68 @@ const handleFileChange = (event) => {
 
 // Carrega os dados do perfil (se existir)
 const carregarPerfil = async () => {
-    const token = localStorage.getItem('token');
+  try {
+    $fetch('http://localhost:3000/api/perfis/getMyPerfil', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));;
+
+    console.log("Resposta da API:", response);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Erro da API:", errorData);
+      throw new Error(errorData.message || "Erro ao carregar o perfil");
+    }
+
+    const data = await response.json();
+    console.log("Perfil carregado com sucesso:", data);
+  } catch (error) {
+    console.error("Erro ao carregar perfil:", error);
+  }
+};
+
+
+
+
+// Lida com criação ou atualização de perfil
+const salvarPerfil = async () => {
+    const token = localStorage.getItem('token'); // Recupera o token do localStorage
     if (!token) {
         alert('Usuário não autenticado.');
         return;
     }
 
+    const formData = new FormData();
+    formData.append("nome", nome.value);
+    formData.append("dataAniversario", dataAniversario.value);
+    formData.append("localizacao", localizacao.value);
+    formData.append("bio", bio.value);
+    formData.append("url", url.value || "");
+    if (foto.value) formData.append("foto", foto.value);
+
     try {
-        const response = await $fetch('/api/perfis/getMyPerfil', {
-            method: 'GET',
+        const response = await $fetch('/api/perfis/create.post.perfil', {
+            method: 'POST',
+            body: formData,
             headers: {
-                Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
             },
         });
 
-        console.log('Perfil carregado:', response);
-        // Faça algo com o perfil carregado
+        alert("Perfil criado com sucesso!");
     } catch (error) {
-        console.error('Erro ao carregar perfil:', error);
+        console.error("Erro ao salvar perfil:", error);
+        alert("Erro ao salvar perfil. Verifique os campos e tente novamente.");
     }
 };
-
-// Lida com criação ou atualização de perfil
-const salvarPerfil = async () => {
-  if (!nome.value || !dataAniversario.value || !localizacao.value || !bio.value) {
-    alert("Todos os campos obrigatórios devem ser preenchidos.");
-    return;
-  }
-
-  if (!foto.value && !isEditing.value) {
-    alert("A foto é obrigatória para criar o perfil.");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("nome", nome.value);
-  formData.append("dataAniversario", dataAniversario.value);
-  formData.append("localizacao", localizacao.value);
-  formData.append("bio", bio.value);
-  formData.append("url", url.value || "");
-  if (foto.value) formData.append("foto", foto.value);
-
-
-
-  try {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert("Usuário não autenticado.");
-      return;
-    }
-    const response = await $fetch("/api/perfis/create.post.perfil", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-    console.log("Resposta do servidor:", response);
-    alert("Perfil criado com sucesso!");
-  } catch (error) {
-    console.error("Erro ao salvar perfil:", error);
-    alert("Erro ao salvar perfil. Verifique os campos e tente novamente.");
-  }
-};
-
-
 
 // Carrega os dados do perfil ao montar o componente
 onMounted(() => {

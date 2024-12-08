@@ -6,6 +6,7 @@ const PictureSchema = new mongoose.Schema({
 });
 
 const PerfilSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
   nome: { type: String, required: true },
   dataAniversario: { type: String, required: true },
   localizacao: { type: String, required: true },
