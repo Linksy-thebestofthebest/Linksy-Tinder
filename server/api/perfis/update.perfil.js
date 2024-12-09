@@ -1,4 +1,4 @@
-import Perfil from "~/server/models/Perfil";
+import Perfil from "~/server/models/User";
 import fs from "fs";
 import path from "path";
 

@@ -1,11 +1,10 @@
-import Perfil from "~/server/models/Perfil";
+import User from "~/server/models/User";
 
 export default defineEventHandler(async (event) => {
-  const userId = event.context.user.id; // Obtém o ID do usuário autenticado
-
   try {
-    // Busca todos os perfis, exceto o do usuário logado
-    const perfis = await Perfil.find({ userId: { $ne: userId } });
+    // Busca todos os perfis no banco de dados
+    const perfis = await User.find();
+
     return { data: perfis };
   } catch (error) {
     console.error("Erro ao buscar perfis:", error);

@@ -9,16 +9,10 @@
             
             <form @submit.prevent="cadastrar" class="flex flex-col gap-12 w-full">
                 <div class="flex flex-col md:flex-row gap-12">
-                    <!-- Left Column -->
                     <div class="flex flex-col gap-4 w-full md:w-1/2">
                         <div class="flex flex-col">
                             <label for="primeiro" class="text-[#9B9C9E] mb-4">Nome completo</label>
-                            <input type="text" v-model="primeiroNome" placeholder="Nome" id="primeiro" 
-                                class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
-                        </div>
-                        <div class="flex flex-col">
-                            <label for="senha" class="text-[#9B9C9E] mb-4">Senha</label>
-                            <input type="password" v-model="senha" placeholder="Senha" id="senha" 
+                            <input type="text" v-model="nome" placeholder="Nome" id="primeiro" 
                                 class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
                         </div>
                         <div class="flex flex-col">
@@ -26,23 +20,27 @@
                             <input type="email" v-model="email" placeholder="Email" id="email"
                                 class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
                         </div>
+                        <div class="flex flex-col">
+                            <label for="senha" class="text-[#9B9C9E] mb-4">Senha</label>
+                            <input type="password" v-model="senha" placeholder="Senha" id="senha" 
+                                class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
+                        </div>
                     </div>
 
-                    <!-- Right Column -->
                     <div class="flex flex-col gap-4 w-full md:w-1/2">
                         <div class="flex flex-col">
                             <label for="data" class="text-[#9B9C9E] mb-4">Data de aniversário</label>
-                            <input type="date" name="data" id="data"
+                            <input type="date" v-model="dataAniversario" name="data" id="data"
+                                class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="local" class="text-[#9B9C9E] mb-4">Cidade onde mora</label>
+                            <input type="text" v-model="localizacao" name="local" id="local" placeholder="São Paulo" 
                                 class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
                         </div>
                         <div class="flex flex-col">
                             <label for="confirmar-senha" class="text-[#9B9C9E] mb-4">Confirmar Senha</label>
                             <input type="password" v-model="confirmaSenha" placeholder="Confirmar Senha" id="confirmar-senha" 
-                                class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
-                        </div>
-                        <div class="flex flex-col">
-                            <label for="local" class="text-[#9B9C9E] mb-4">Cidade onde mora</label>
-                            <input type="text" name="local" id="local" placeholder="São Paulo" 
                                 class="border-2 border-[#363A3D] bg-[#1A1D21] w-full text-lg text-[#9B9C9E] px-2 py-2 rounded-lg">
                         </div>
                     </div>
@@ -54,16 +52,12 @@
                     <div class="flex flex-col w-full md:w-1/2">
                         <p class="text-[#c5c6c8] text-base font-semibold">Biografia</p>
                         <label for="bio" class="text-xs mt-2 mb-4 text-[#C9C9C9]">Faça uma breve descrição sobre você, quais cursos já fez, o que sabe, quais são suas experiências</label>
-                        <textarea name="bio" id="bio" cols="40" rows="5" class="border-2 border-[#363A3D] bg-[#1A1D21] text-lg text-[#9B9C9E] rounded-lg"></textarea>
+                        <textarea name="bio" id="bio" cols="40" rows="5" v-model="bio" class="border-2 border-[#363A3D] bg-[#1A1D21] text-lg text-[#9B9C9E] rounded-lg"></textarea>
                     </div>
 
                     <!-- Foto -->
                     <div class="flex flex-col mt-8 md:mt-12 md:ml-[3rem] items-center xl:ml-[13rem]">
-                        <label 
-                        class="w-[10rem] h-[10rem] bg-gray-300 flex items-center justify-center text-gray-500 rounded-full cursor-pointer transition-all duration-300 outline-none overflow-hidden hover:bg-gray-400 hover:text-gray-600 active:bg-gray-200 active:text-teal-950" 
-                        for="foto" 
-                        tabindex="0"
-                        >
+                        <label class="w-[10rem] h-[10rem] bg-gray-300 flex items-center justify-center text-gray-500 rounded-full cursor-pointer transition-all duration-300 outline-none overflow-hidden hover:bg-gray-400 hover:text-gray-600 active:bg-gray-200 active:text-teal-950"  for="foto" tabindex="0">
                         <span class="w-full h-full flex items-center justify-center">
                             <span v-if="!imagePreview" class="text-center">{{ placeholder }}</span>
                             <img v-else :src="imagePreview" class="w-full h-full object-cover" />
@@ -125,11 +119,14 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const primeiroNome = ref('');
-const ultimoNome = ref('');
+const nome = ref('');
+const dataAniversario = ref('');
 const email = ref('');
 const senha = ref('');
 const confirmaSenha = ref('');
+const localizacao = ref('');
+const bio = ref('');
+
 const trabalhar = ref(false);
 const contratar = ref(false);
 
@@ -139,66 +136,72 @@ const placeholder = "Selecione uma imagem";
 
 const router = useRouter();
 
+
 const cadastrar = async () => {
-  if (senha.value !== confirmaSenha.value) {
-    alert('As senhas não coincidem');
-    return;
-  }
-
-  if (!trabalhar.value && !contratar.value) {
-    alert('Você deve escolher "Ser contratado" ou "Contratar"');
-    return;
-  }
-
-  if (trabalhar.value && contratar.value) {
-    alert('Escolha apenas uma opção entre "Ser contratado" e "Contratar"');
-    return;
-  }
-  
-  const escolha = trabalhar.value ? "trabalhar" : "contratar";
-
-  try {
-    const response = await $fetch('/api/auth/register', {
-      method: 'POST',
-      body: {
-        primeiroNome: primeiroNome.value,
-        ultimoNome: ultimoNome.value,
-        email: email.value,
-        senha: senha.value,
-        confirma_senha: confirmaSenha.value,
-        escolha,
-      },
-    });
-
-
-
-    alert('Usuário cadastrado com sucesso!');
-    router.push('/');
-  } catch (err) {
-    console.error('Erro ao cadastrar usuário:', err);
-
-    if (err.response && err.response._data) {
-      alert(`Erro: ${err.response._data.message}`);
-    } else {
-      alert('Erro desconhecido ao cadastrar usuário. Tente novamente.');
+    if (!nome.value) {
+        alert("O campo 'Nome' é obrigatório.");
+        return;
     }
-  }
+    if (!dataAniversario.value) {
+        alert("O campo 'Data de Aniversário' é obrigatório.");
+        return;
+    }
+    if (!localizacao.value) {
+        alert("O campo 'Localização' é obrigatório.");
+        return;
+    }
+    if (!bio.value) {
+        alert("O campo 'Biografia' é obrigatório.");
+        return;
+    }
+    if (!foto.value) {
+        alert("A foto é obrigatória.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("nome", nome.value);
+    formData.append("dataAniversario", dataAniversario.value);
+    formData.append("email", email.value);
+    formData.append("senha", senha.value);
+    formData.append("confirma_senha", confirmaSenha.value);
+    formData.append("localizacao", localizacao.value);
+    formData.append("bio", bio.value);
+    formData.append("escolha", trabalhar.value ? "trabalhar" : "contratar");
+    formData.append("foto", foto.value);
+
+    console.log("Arquivo sendo enviado:", foto.value);
+    console.log("Dados enviados:", Array.from(formData.entries()));
+
+    try {
+        const response = await $fetch("/api/auth/register", {
+            method: "POST",
+            body: formData,
+        });
+        alert("Usuário cadastrado com sucesso!");
+        router.push("/login");
+    } catch (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        alert("Erro ao cadastrar usuário. Verifique os campos e tente novamente.");
+    }
 };
 
 // Manipula o upload da imagem
 const handleFileChange = (event) => {
-  const file = event.target.files[0];
-  if (file && file.type.startsWith("image/")) {
-    foto.value = file;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imagePreview.value = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    alert("Por favor, selecione um arquivo de imagem válido.");
-  }
+    const file = event.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+        foto.value = file;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            imagePreview.value = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert("Por favor, selecione um arquivo de imagem válido.");
+    }
 };
+
+
 </script>
 
 

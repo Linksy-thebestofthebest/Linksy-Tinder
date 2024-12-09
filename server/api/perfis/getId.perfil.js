@@ -1,4 +1,4 @@
-import Perfil from "~/server/models/Perfil";
+import Perfil from "~/server/models/User";
 
 export default defineEventHandler(async (event) => {
   try {
