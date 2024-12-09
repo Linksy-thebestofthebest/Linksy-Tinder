@@ -2,7 +2,7 @@
     <div class="flex h-screen">
         <Aside />
         <Chat/>
-        <Informacao />
+        <Informacao class="hidden lg:flex"/>
     </div>
 </template>
 <style setup>

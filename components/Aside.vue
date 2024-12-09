@@ -1,6 +1,6 @@
 <template>
-    <aside class=" w-1/6 rounded-3xl font-jakarta flex flex-col min-h-screen">
-        <div class="p-4 flex flex-col flex-grow">
+    <aside class="w-3/6 lg:w-2/6 xl:w-1/6 rounded-3xl font-jakarta md:flex flex-col min-h-screen hidden">
+        <div class="w-full p-4 flex flex-col flex-grow">
             <div class="flex items-center justify-between bg-[#0D0F10] mb-0.5 rounded-t-2xl py-6 px-4">
                 <div class="flex items-center gap-3">
                     <img src="../public/img/avatar-pessoal.svg" alt="">
