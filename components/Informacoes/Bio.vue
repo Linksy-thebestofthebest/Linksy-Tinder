@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#171B1F] mt-10 rounded-2xl p-6 w-8/12">
+    <div class="bg-[#171B1F] mt-5 md:mt-10 rounded-2xl p-6 md:w-8/12">
         <div class="flex justify-between">
             <p class="text-2xl font-bold">André</p>
             <p class="text-2xl font-medium">18</p>
