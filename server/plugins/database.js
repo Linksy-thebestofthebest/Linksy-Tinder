@@ -6,10 +6,7 @@ export default defineNitroPlugin(() => {
   
   try {
     // Conecta ao banco de dados
-    mongoose.connect(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    mongoose.connect(MONGO_URI, {});
 
     // Evento de conexão bem-sucedida
     mongoose.connection.on('connected', () => {
