@@ -58,6 +58,21 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Foto -->
+                <div class="flex flex-col my-4">
+                    <label 
+                    class="w-[5rem] h-[5rem] bg-gray-300 flex items-center justify-center text-gray-500 rounded-full cursor-pointer transition-all duration-300 outline-none overflow-hidden hover:bg-gray-400 hover:text-gray-600 active:bg-gray-200 active:text-teal-950" 
+                    for="foto" 
+                    tabindex="0"
+                    >
+                    <span class="w-full h-full flex items-center justify-center">
+                        <span v-if="!imagePreview" class="text-center">{{ placeholder }}</span>
+                        <img v-else :src="imagePreview" class="w-full h-full object-cover" />
+                    </span>
+                    </label>
+                    <input type="file" name="foto" id="foto" class="hidden" @change="handleFileChange" />
+                </div>
                 <div class="text-[#9B9C9E] ml-48">
                     <p class="text-[#c5c6c8] mb-4">O que você está buscando no Linksy?</p>
                     <div class="flex gap-[8rem] items-center">
