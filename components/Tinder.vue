@@ -1,46 +1,19 @@
 <template>
-  <section class="w-4/12 p-6 flex flex-col items-center text-white font-jakarta ml-96">
-    <div class="flex flex-col items-center overflow-y-auto">
-      <div class="flex">
-        <!-- Botão de voltar -->
-        <img src="../public/img/flecha.svg" class="rotate-180 cursor-pointer" @click="perfilAnterior"alt="Voltar"/>
-        <!-- Imagem do Perfil -->
-        <div v-if="perfis[perfilAtual]" class="flex justify-center">
-          <img :src="perfis[perfilAtual].foto.src" alt="Foto do Perfil" class="rounded-2xl w-8/12"/>
+    <section class="w-full lg:w-6/12 xl:w-4/12 p-6 flex flex-col items-center text-white font-jakarta lg:ml-24 xl:ml-96">
+        <div class="flex flex-col items-center overflow-y-auto">
+            <div class="flex">
+                <img src="../public/img/flecha.svg" class="rotate-180 cursor-pointer hidden lg:block" alt="">
+                <InformacoesImagemInformacao/>
+                <img src="../public/img/flecha.svg" class="cursor-pointer hidden lg:block" alt="">
+            </div>
+            <div class="flex mt-4">
+                <a href="#"><img src="../public/img/undo-button.svg" alt="Botão de voltar"></a>
+                <a href="#"><img src="../public/img/dislike-button.svg" alt="Botão de dislike"></a>
+                <a href="#"><img src="../public/img/like-button.svg" alt="Botão de like"></a>
+            </div>
+            <InformacoesBio/>
         </div>
-        <!-- Botão de avançar -->
-        <img src="../public/img/flecha.svg" class="cursor-pointer" @click="proximoPerfil" alt="Avançar"/>
-      </div>
-
-      <!-- Botões de ação -->
-      <div class="flex mt-4">
-        <a href="#"><img src="../public/img/undo-button.svg" alt="Botão de voltar" /></a>
-        <a href="#"><img src="../public/img/dislike-button.svg" alt="Botão de dislike" /></a>
-        <a href="#"><img src="../public/img/super-like-button.svg" alt="Botão de super like" /></a>
-        <a href="#"><img src="../public/img/like-button.svg" alt="Botão de like" /></a>
-        <a href="#"><img src="../public/img/flash-button.svg" alt="Botão de raio" /></a>
-      </div>
-
-      <!-- Informações do Perfil -->
-      <div v-if="perfis[perfilAtual]" class="bg-[#171B1F] mt-10 rounded-2xl p-6 w-8/12">
-        <div class="flex justify-between">
-          <p class="text-2xl font-bold">{{ perfis[perfilAtual].nome }}</p>
-          <p class="text-2xl font-medium">{{ getAge(perfis[perfilAtual].dataAniversario) }}</p>
-        </div>
-        <p class="text-sm text-gray-400">{{ perfis[perfilAtual].localizacao }}</p>
-        <div class="mt-4 space-y-2 text-[#CFCFCF] font-medium text-lg">
-          <p>
-            <strong class="text-[#e1e1e1]"></strong>
-            {{ perfis[perfilAtual].bio || "Não informado" }}
-          </p>  
-          <p>
-            <strong class="text-[#e1e1e1]">URL:</strong>
-            {{ perfis[perfilAtual].url || "Não informado" }}
-          </p>  
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </template>
 
 <style setup>
