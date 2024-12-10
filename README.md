@@ -1,75 +1,27 @@
-# Nuxt Minimal Starter
+# Linksy
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+* Projeto desenvolvido para a axolab
 
-## Setup
+## Descrição 📋
 
-Make sure to install dependencies:
+* Desenvolver um espaço para pessoas que buscam colaboradores e pessoas que buscam oportunidades
 
-```bash
-# npm
-npm install
+## Ferramentas e linguagens utilizadas
 
-# pnpm
-pnpm install
+<a href="https://tailwindcss.com"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" align="center" height="50" width="60"/></a>
+<a href="https://nuxt.com"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg" align="center" height="50" width="60"/></a>
+<a href="https://vuejs.org"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" align="center" height="50" width="60"/></a>
+<a href="https://nodejs.org/en/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg" align="center" height="50" width="60"/></a>
+<a href="https://www.mongodb.com/try/download/community"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original-wordmark.svg" align="center" height="50" width="60"/></a>
 
-# yarn
-yarn install
+## Integrantes 👥
 
-# bun
-bun install
-```
+* 👤 Leticia Passos
+* 👤 André Altobelli
+* 👤 Victor Estrella
+---
 
-## Development Server
+## Rodando o código 🚀
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+* `npm i`
+* `npm run dev`
