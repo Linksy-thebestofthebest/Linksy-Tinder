@@ -1,9 +1,9 @@
 <template>
-    <section class="w-full lg:w-6/12 xl:w-4/12 p-6 flex flex-col items-center text-white font-jakarta lg:ml-24 xl:ml-96">
+    <section class="w-full lg:w-6/12 xl:w-4/12 p-6 flex flex-col items-center text-white font-jakarta mt-12 lg:ml-24 xl:ml-96">
         <div class="flex flex-col items-center overflow-y-auto">
             <div class="flex">
                 <img src="../public/img/flecha.svg" class="rotate-180 cursor-pointer hidden lg:block" alt="Anterior" @click="handleDislike" />
-                <img :src="perfilAtual?.foto?.src || '../public/img/avatar-placeholder.jpg'" :alt="perfilAtual?.foto?.name || 'Imagem atual'" class="w-72 h-96 object-cover rounded-3xl"/>
+                <img :src="perfilAtual?.foto?.src || '/img/icon.svg'" :alt="perfilAtual?.foto?.name || 'Imagem atual'" class="w-72 h-96 object-cover rounded-3xl"/>
                 <img src="../public/img/flecha.svg" class="cursor-pointer hidden lg:block" alt="Próximo" @click="handleLike" />
             </div>
             <div class="flex mt-4">
