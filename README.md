@@ -4,7 +4,7 @@
 
 ## Descrição 📋
 
-* Desenvolver um espaço para pessoas que buscam colaboradores e pessoas que buscam oportunidades
+* A Linksy é uma plataforma inovadora que combina o conceito de networking profissional com a dinâmica de "match". O objetivo é facilitar a conexão entre empresas e profissionais, promovendo oportunidades de trabalho, projetos e colaborações de forma moderna, intuitiva e eficaz. A experiência é inspirada na leveza e interatividade de aplicativos como o Tinder, mas focada no universo corporativo.
 
 ## Ferramentas e linguagens utilizadas
 
